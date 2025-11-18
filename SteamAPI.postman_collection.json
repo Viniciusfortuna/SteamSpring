@@ -1,0 +1,318 @@
+{
+  "info": {
+    "name": "SteamAPI",
+    "_postman_id": "b12fcad4-233c-4cd5-9eb2-998a4f6ad011",
+    "description": "Coleção completa de testes para a API Steam",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Registrar USER",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Joao User\",\n  \"email\": \"user@gmail.com\",\n  \"password\": \"123\",\n  \"role\": \"ROLE_USER\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/auth/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Registrar ADMIN",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Maria Admin\",\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"123\",\n  \"role\": \"ROLE_ADMIN\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/auth/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login USER",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@gmail.com\",\n  \"password\": \"123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login ADMIN",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Jogos",
+      "item": [
+        {
+          "name": "Criar jogo (ADMIN)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ADMIN_TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Counter-Strike 2\",\n  \"descricao\": \"FPS competitivo\",\n  \"categoria\": \"FPS\",\n  \"preco\": 79.90,\n  \"dataLancamento\": \"2023-09-01\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/jogos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["jogos"]
+            }
+          }
+        },
+        {
+          "name": "Listar jogos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{USER_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/jogos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["jogos"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Biblioteca",
+      "item": [
+        {
+          "name": "Criar biblioteca",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{USER_TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"jogosIds\": [1]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/biblioteca",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["biblioteca"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Inventário",
+      "item": [
+        {
+          "name": "Criar inventário",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{USER_TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nomeItem\": \"Skin Rara\",\n  \"raridade\": \"Lendária\",\n  \"tipoItem\": \"Cosmético\",\n  \"userId\": 1,\n  \"jogosIds\": [1]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/inventario",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["inventario"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Perfil",
+      "item": [
+        {
+          "name": "Criar perfil",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{USER_TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nickname\": \"player1\",\n  \"bio\": \"Gamer desde 2010\",\n  \"nivel\": 15,\n  \"imagemPerfil\": \"img.png\",\n  \"userId\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/perfil",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["perfil"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "User Dashboard",
+      "item": [
+        {
+          "name": "Dashboard do usuário",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{USER_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/user/dashboard",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["user", "dashboard"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Admin Dashboard",
+      "item": [
+        {
+          "name": "Painel admin",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ADMIN_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/admin/panel",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["admin", "panel"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "USER_TOKEN",
+      "value": ""
+    },
+    {
+      "key": "ADMIN_TOKEN",
+      "value": ""
+    }
+  ]
+}
