@@ -1,1 +1,4 @@
-No arquivo SteamAPI.postman_collection.json contem as requisições pré-definidas.
+No arquivo SteamAPI.postman_collection.json contém as requisições pré-definidas, para utilização.
+
+
+
